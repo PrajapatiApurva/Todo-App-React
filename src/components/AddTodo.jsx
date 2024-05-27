@@ -46,9 +46,9 @@ function AddTodo({onNewItem}) {
         <div className="col-4">
           <input
             className={styles.second} 
-           type="date" 
-           value={dueDate}
-           onChange={handleNewDueDate}
+            type="date" 
+            value={dueDate}
+            onChange={handleNewDueDate}
           />
         </div>
         <div className="col-2">
