@@ -7,7 +7,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-##How to use it in your local machine:
+## How to use it in your local machine:
 1. Clone it using http or through Zip.
 2. `npm install` or `npm i`
 3. `npm run dev` and play with the local dev environment.
