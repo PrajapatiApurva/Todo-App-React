@@ -3,8 +3,8 @@ import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
 import TodoItems from "./components/TodoItems";
 import styles from "./App.module.css";
-import "./App.css";
 import ErrorMessage from "./components/ErrorMessage";
+import "./App.css";
 
 function App() {
   
@@ -12,12 +12,13 @@ function App() {
 
   const handleNewItem=(todoName,dueDate)=>{
     if(todoName !=="" && dueDate!==""){
-      let newTodoItems=[...todoItems,{todoName,dueDate}];
+      let time=new Date().toLocaleTimeString();
+      let newTodoItems=[...todoItems,{todoName,dueDate,time}];
       setTodoItems(newTodoItems);
     }
   }
-  const handleDeleteItem=(todoItem)=>{
-    let newItems=todoItems.filter((item)=>item.todoName!==todoItem);
+  const handleDeleteItem=(key)=>{
+    let newItems=todoItems.filter((item)=>item.time!==key);
     setTodoItems(newItems);
   }
   return (

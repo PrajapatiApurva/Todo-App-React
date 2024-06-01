@@ -1,68 +1,55 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { IoIosAddCircle } from "react-icons/io";
 function AddTodo({onNewItem}) {
 
-  const [todoName, setTodoName] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
-  const handleNewTodo = (event) => {
-    if(event.target.value!==""){
-      let newtodo=event.target.value;
-      setTodoName(newtodo);
+  const handleNewTodoItem = (event) => {
+    event.preventDefault();
+
+    const todoName = todoNameElement.current.value;
+    const dueDate = todoDateElement.current.value;
+
+    if(todoName !== "" && dueDate !== ""){
+      onNewItem(todoName,dueDate);
+      todoNameElement.current.value = "";
+      todoDateElement.current.value = "";
     }
     
   }
-
-  const handleNewDueDate = (event) => {
-    if(event.target.value!==""){
-      let newDate=event.target.value;
-      setDueDate(newDate);
-    }
-  }
-
-  const handleNewTodoItem=()=>{
-    if(todoName!=="" || dueDate!==""){
-      onNewItem(todoName,dueDate)
-      setDueDate("");
-      setTodoName("");  
-    }
-    
-  }
-
-
   return (
     <div className={`container text-center`}>
-      <div className="row kg-row">
-        <div className="col-6">
-          <input
-            className={styles.first} 
-            type="text"
-            value={todoName} 
-            placeholder="Enter Todo Here" 
-            onChange={handleNewTodo}
-          />
-        </div>
-        <div className="col-4">
-          <input
-            className={styles.second} 
-            type="date" 
-            value={dueDate}
-            onChange={handleNewDueDate}
-          />
-        </div>
-        <div className="col-2">
-          <button 
-            onClick={handleNewTodoItem}
-            type="button" 
-            className={` btn btn-success kg-button ${styles.btn} ${styles.third}`}
-          >
-            <IoIosAddCircle 
-              className={styles.icon} 
+      <form onSubmit={handleNewTodoItem}>
+        <div className="row kg-row">
+          <div className="col-6">
+            <input
+              className={styles.first} 
+              placeholder="Enter Todo Here" 
+              ref={todoNameElement}
+              type="text"
             />
-          </button>
+          </div>
+          <div className="col-4">
+            <input
+              className={styles.second} 
+              ref={todoDateElement}
+              type="date" 
+            />
+          </div>
+          <div className="col-2">
+            <button 
+              type="submit" 
+              className={` btn btn-success kg-button ${styles.btn} ${styles.third}`}
+            >
+              <IoIosAddCircle 
+                className={styles.icon} 
+              />
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
